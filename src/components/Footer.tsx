@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="footer-info">
         <p>GitHub</p>
-        <p>LinkedIn</p>
+        {/* <p>LinkedIn</p> */}
       </div>
     </footer>
   )
