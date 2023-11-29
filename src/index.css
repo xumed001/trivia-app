@@ -18,12 +18,16 @@
   --color-200: #e5e5e5;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 body {
   line-height: 1.5;
-  font-family: sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-200);
+  background-color: var(--color-200);
 }
 
 .app {
@@ -34,59 +38,91 @@ body {
 }
 
 header {
-  padding: 1rem;
   background-color: var(--color-800);
+  padding: 1.6rem 0;
+}
+
+.header-info {
+  width: 85%;
+  margin: 0 auto;
 }
 
 main {
-  margin: 0 auto;
-  margin-top: 2rem;
-  width: 80%;
-  color: var(--color-800);
-  text-align: center;
+  margin: 1rem auto;
+  width: 85%;
+  color: var(--color-950);
+  /* text-align: center; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
-.question-card {
-  background-color: var(--color-400);
-  padding: 1rem;
-  border-radius: 1rem;
+.question-container {
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
 }
 
-.questions {
-  font-size: 2.5rem;
+.answers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
 }
 
-.answers li {
-  list-style: none;
-  background-color: var(--color-300);
-  padding: 0.6rem 1rem;
-  border: 2px solid var(--color-200);
-  border-radius: 1rem;
+.answers-container button {
+  font-family: inherit;
+  font-size: 0.6rem;
+  text-align: center;
   margin-top: 0.5rem;
-}
-
-.final-results {
-  margin-top: 1rem;
-  width: 400px;
-  background-color: var(--color-400);
-  border-radius: 1rem;
-  padding: 1rem;
-}
-
-.final-results button {
-  background-color: red;
-  padding: 0.6rem 2rem;
   border: none;
   border-radius: 1rem;
-  color: var(--color-200);
-  font-weight: bold;
+  padding: 0.4rem;
+  margin-left: 0.2rem;
+  color: var(--color-800);
+}
+
+.answers-container button:hover {
+  background-color: var(--color-200);
 }
 
 footer {
   margin-top: auto;
-  padding: 1rem;
   background-color: var(--color-800);
+}
+
+.footer-info {
+  padding: 1rem 0;
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@media (min-width: 896px) {
+  main {
+    text-align: left;
+    width: 85%;
+    margin-top: 2rem;
+  }
+
+  .question-container {
+    font-size: 1.1rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .answers-container {
+    display: block;
+  }
+
+  .answers-container button {
+    border: 1px solid var(--color-300);
+    background-color: var(--color-200);
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    margin-right: 0.4rem;
+    min-width: 4rem;
+  }
+
+  .answers-container button:hover {
+    background-color: var(--color-300);
+  }
 }
