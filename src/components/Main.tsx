@@ -5,11 +5,10 @@ import he from 'he';
 const Main = () => {
   console.log('component rendered');
   const URL = 'https://opentdb.com/api.php?amount=5&type=multiple';
-  // const [score, setScore] = useState(0);
+  // const [btnState, setBtnState] = useState(false);
   const [triviaData, setTriviaData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   // const [results, setResults] = useState(false)
-  // const [currentQuestion, setCurrentQuestion] = useState(0)
 
   const shuffle = (array) => {
     let currentIndex = array.length,
@@ -64,29 +63,29 @@ const Main = () => {
     getAPI();
   }, []);
 
-  // console.log(triviaData)
-
-  // const handleClick = (isCorrect: boolean) => {
-  //   if (isCorrect) {
-  //     setScore((prevScore) => prevScore + 1);
-  //   }
-
-    // if (currentQuestion + 1 < cleanData.length) {
-    //     setCurrentQuestion(currentQuestion + 1)
-    // } else {
-    //     setResults(true)
-    //}
-  //};
+  // const handleClick = (isCorrect) => {
+  //   console.log(isCorrect)
+  //   setBtnState(prev => !prev);
+  // }  
 
   const questionAnswerContainer = triviaData?.map((item, index) => {
     return (
       <div key={index} className="question-container">
-        <h2>{item.question}</h2>       
+        <h2 className='question'>{item.question}</h2>       
           <div className="answers-container">
             {item.answer.map((element) => (
-              <button key={element.id}>
-                {element.ans}
-              </button>
+              <div key={element.id}>
+                <input 
+                  type='radio'
+                  name={`answerGroup${index}`}
+                  id={element.ans}
+                  // className={`btn`}
+                // onClick={() => handleClick(element.isCorrect)}
+                />
+                <label htmlFor={`${element.ans}`}>
+                  {element.ans}
+                </label>
+              </div>
             ))}
           </div>
       </div>
@@ -100,6 +99,7 @@ const Main = () => {
       ) : (
         <>
           {questionAnswerContainer}
+          <button>Check Answers</button>
         </>
       )}
     </main>
