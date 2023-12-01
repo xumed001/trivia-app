@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import he from 'he';
 
 const Main = () => {
   console.log('component rendered');
-  const URL = 'https://opentdb.com/api.php?amount=5&type=multiple';
-  // const [btnState, setBtnState] = useState(false);
+  const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
   const [triviaData, setTriviaData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  // const [results, setResults] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);  
+  // const [checkDisabled, setCheckDisabled] = useState(true);
+  const [toggleRestart, setToggleRestart] = useState(false);
+  const [count, setCount] = useState(0);
+  let allAns = useRef([] as any);
+
+  const userAns = new Array(5).fill(null);
 
   const shuffle = (array) => {
     let currentIndex = array.length,
@@ -61,12 +65,35 @@ const Main = () => {
       });
     }
     getAPI();
-  }, []);
+  }, [count]);
 
-  // const handleClick = (isCorrect) => {
-  //   console.log(isCorrect)
-  //   setBtnState(prev => !prev);
-  // }  
+  const handleRadioChange = (event) => {
+    const {name, value} = event.target
+    userAns[Number((name).slice(-1))] = value
+    // console.log(userAns)
+    allAns.current = [...userAns]
+    console.log(allAns)
+  }
+
+  const checkAnswers = () => {   
+    if (allAns.current.includes(null) || allAns.current.length === 0) {
+      return
+    } else {
+        const results = allAns.current.reduce((prev, cur) => {
+          prev[cur] = (prev[cur] || 0) + 1;
+          return prev
+        }, {})
+        console.log(results)  
+        setToggleRestart(true)
+    }
+  }  
+
+  const restartGame = () => {
+    setCount(prev => prev + 1)
+    setToggleRestart(false)
+    // setCheckDisabled(true)
+  }
+
 
   const questionAnswerContainer = triviaData?.map((item, index) => {
     return (
@@ -78,11 +105,12 @@ const Main = () => {
                 <input 
                   type='radio'
                   name={`answerGroup${index}`}
-                  id={element.ans}
-                  // className={`btn`}
-                // onClick={() => handleClick(element.isCorrect)}
+                  id={`${element.ans}${index}`}
+                  value={element.isCorrect}
+                  // className={`${updateClassName}`}
+                  onChange={handleRadioChange}
                 />
-                <label htmlFor={`${element.ans}`}>
+                <label htmlFor={`${element.ans}${index}`}>
                   {element.ans}
                 </label>
               </div>
@@ -99,7 +127,13 @@ const Main = () => {
       ) : (
         <>
           {questionAnswerContainer}
-          <button>Check Answers</button>
+          {toggleRestart ? 
+          <>
+            <p>You Scored {`${allAns.current.filter(x => x === 'true').length}`}/5 correct answers</p>
+            <button type='button' onClick={restartGame}>Restart</button>
+          </>
+          :
+          <button type='button' onClick={checkAnswers}>Check Answers</button>}
         </>
       )}
     </main>
