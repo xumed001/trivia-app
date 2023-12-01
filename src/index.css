@@ -115,6 +115,36 @@ input[type='radio']:checked + label {
   background-color: #fee2e2;
 }
 
+.trivia-results {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.trivia-results button {
+  margin-top: 0.6rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--color-800);
+  color: var(--neutral-100);
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+.btnCheckAns {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--neutral-200);
+  color: var(--color-800);
+  font-size: 0.5rem;
+  font-weight: bold;
+}
+
 footer {
   margin-top: auto;
   background-color: var(--color-950);
