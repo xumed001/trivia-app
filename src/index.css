@@ -107,6 +107,14 @@ input[type='radio']:checked + label {
   border: none;
 }
 
+.correct + label {
+  background-color: #d9f99d;
+}
+
+.incorrect + label {
+  background-color: #fee2e2;
+}
+
 footer {
   margin-top: auto;
   background-color: var(--color-950);
@@ -141,11 +149,11 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 4px;
-    width: 75%;
+    width: 60%;
   }
 
   main {
-    width: 75%;
+    width: 60%;
     margin-top: 4rem;
   }
 
@@ -187,5 +195,50 @@ footer {
     background-color: var(--neutral-100);
     cursor: pointer;
     font-weight: bold;
+  }
+
+  .correct + label {
+    background-color: #d9f99d;
+  }
+
+  .incorrect + label {
+    background-color: #fee2e2;
+  }
+
+  .trivia-results {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .trivia-results button {
+    margin-top: 1rem;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--color-800);
+    color: var(--neutral-100);
+    font-size: 1rem;
+  }
+
+  .trivia-results button:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btnCheckAns {
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--neutral-200);
+    color: var(--color-800);
+    font-size: 1rem;
+  }
+
+  .btnCheckAns:hover {
+    cursor: pointer;
   }
 }

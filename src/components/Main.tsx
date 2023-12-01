@@ -7,11 +7,11 @@ const Main = () => {
   const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
   const [triviaData, setTriviaData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);  
-  // const [checkDisabled, setCheckDisabled] = useState(true);
   const [toggleRestart, setToggleRestart] = useState(false);
   const [count, setCount] = useState(0);
-  let allAns = useRef([] as any);
+  const [toggleStyle, setToggleStyle] = useState(false)
 
+  const allAns = useRef([] as any);
   const userAns = new Array(5).fill(null);
 
   const shuffle = (array) => {
@@ -79,21 +79,17 @@ const Main = () => {
     if (allAns.current.includes(null) || allAns.current.length === 0) {
       return
     } else {
-        const results = allAns.current.reduce((prev, cur) => {
-          prev[cur] = (prev[cur] || 0) + 1;
-          return prev
-        }, {})
-        console.log(results)  
         setToggleRestart(true)
     }
+    setToggleStyle(true)
   }  
 
   const restartGame = () => {
+    allAns.current = new Array(5).fill(null);
     setCount(prev => prev + 1)
     setToggleRestart(false)
-    // setCheckDisabled(true)
+    setToggleStyle(false)
   }
-
 
   const questionAnswerContainer = triviaData?.map((item, index) => {
     return (
@@ -107,7 +103,7 @@ const Main = () => {
                   name={`answerGroup${index}`}
                   id={`${element.ans}${index}`}
                   value={element.isCorrect}
-                  // className={`${updateClassName}`}
+                  className={`${toggleStyle ? (element.isCorrect ? 'correct' : 'incorrect') : ''}`}
                   onChange={handleRadioChange}
                 />
                 <label htmlFor={`${element.ans}${index}`}>
@@ -128,12 +124,12 @@ const Main = () => {
         <>
           {questionAnswerContainer}
           {toggleRestart ? 
-          <>
+          <div className='trivia-results'>
             <p>You Scored {`${allAns.current.filter(x => x === 'true').length}`}/5 correct answers</p>
             <button type='button' onClick={restartGame}>Restart</button>
-          </>
+          </div>
           :
-          <button type='button' onClick={checkAnswers}>Check Answers</button>}
+          <button className='btnCheckAns' type='button' onClick={checkAnswers}>Check Answers</button>}
         </>
       )}
     </main>
