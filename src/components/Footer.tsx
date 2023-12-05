@@ -5,7 +5,11 @@ const Footer = () => {
     <footer>
       <div className="footer-info">
         <img src={githubIcon} alt="Github icon" />
-        <p>GitHub</p>
+        <a 
+          className="footer-link1" 
+          href='https://github.com/xumed001/trivia-app'
+          target="_blank"
+        >GitHub</a>
       </div>
     </footer>
   )

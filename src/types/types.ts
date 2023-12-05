@@ -13,3 +13,8 @@ export interface DataTypes {
     correct_answer: string;
     incorrect_answers: string[];
 }
+
+export interface Props {
+    toggleDarkMode?: () => void;
+    darkMode?: boolean;
+  }

@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import he from 'he';
-import { DataTypes, QuestionAnswerArr } from '../types/types';
+import { DataTypes, Props, QuestionAnswerArr } from '../types/types';
 
 
-const Main = () => {
+const Main = (props: Props) => {
   // console.log('component rendered');
   const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
   const [triviaData, setTriviaData] = useState<QuestionAnswerArr[] | null>(null);
@@ -98,7 +98,7 @@ const Main = () => {
     return (
       <div key={index} className="question-container">
         <h2 className='question'>{item.question}</h2>       
-          <div className="answers-container">
+          <div className={`answers-container ${props.darkMode ? 'dark' : ''}`}>
             {item.answer.map((element) => (
               <div key={element.id}>
                 <input 
@@ -120,7 +120,7 @@ const Main = () => {
   })
  
   return (
-    <main>
+    <main className={props.darkMode ? 'dark' : ''} >
       {isLoading ? (
         'Loading...'
       ) : (

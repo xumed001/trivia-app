@@ -1,8 +1,8 @@
 import themeIcon from '../assets/theme-icon.svg'
 import bookIcon from '../../public/books.svg'
+import { Props } from '../types/types'
 
-
-const Header = () => {
+const Header = (props: Props) => {
   return (
     <header>
       <div className="header-info">
@@ -17,7 +17,11 @@ const Header = () => {
           </div>
           <p>Test your video game knowledge</p>
         </div>
-        <button>
+
+        <button 
+          className='header-toggleTheme'
+          onClick={props.toggleDarkMode}
+        >
           <img src={themeIcon} alt="theme icon" />
         </button>
       </div>
