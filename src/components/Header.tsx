@@ -1,5 +1,5 @@
 import themeIcon from '../assets/theme-icon.svg'
-import bookIcon from '../../public/books.svg'
+import bookIcon from '../assets/books.svg'
 import { Props } from '../types/types'
 
 const Header = (props: Props) => {
