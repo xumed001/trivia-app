@@ -4,9 +4,14 @@ import Main from "./components/Main"
 import { useState } from "react"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true)
-
+  //const theme = localStorage.getItem('theme')
+  const [darkMode, setDarkMode] = useState(false)
   const toggleDarkMode = () => {
+    // if (!darkMode) {
+    //   localStorage.setItem('dark-theme', "true")
+    // } else {
+    //   localStorage.removeItem('theme')
+    // }
     setDarkMode(prev => !prev)
   }
   
