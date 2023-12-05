@@ -51,6 +51,20 @@ header {
   margin: 0 auto;
 }
 
+.header-title {
+  display: flex;
+  align-items: center;
+}
+
+.header-title h1 {
+  font-size: 1.4rem;
+}
+
+.header-icon {
+  width: 1.6rem;
+  margin-right: 0.2rem;
+}
+
 .header-info p {
   padding: 4px;
   font-size: 0.6rem;
@@ -168,6 +182,10 @@ footer {
     align-items: center;
     justify-content: space-between;
     width: 95%;
+  }
+
+  .header-title h1 {
+    font-size: 1.6rem;
   }
 
   .header-info p {

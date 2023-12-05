@@ -1,20 +1,23 @@
 import { useEffect, useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import he from 'he';
+import { DataTypes, QuestionAnswerArr } from '../types/types';
+
 
 const Main = () => {
   console.log('component rendered');
   const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
-  const [triviaData, setTriviaData] = useState(null);
+  const [triviaData, setTriviaData] = useState<QuestionAnswerArr[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);  
   const [toggleRestart, setToggleRestart] = useState(false);
   const [count, setCount] = useState(0);
   const [toggleStyle, setToggleStyle] = useState(false)
+  const [checkDisabled, setcheckDisabled] = useState(true)
 
-  const allAns = useRef([] as any);
-  const userAns = new Array(5).fill(null);
+  const allAns = useRef<string[]>([]);
+  const userAns = new Array(5).fill('');
 
-  const shuffle = (array) => {
+  const shuffle = (array : object[]) => {
     let currentIndex = array.length,
       randomIndex;
     while (currentIndex > 0) {
@@ -31,10 +34,10 @@ const Main = () => {
   useEffect(() => {
     console.log('effect ran');
     async function getAPI() {
-      const arr = [];
+      const arr: any[] = [];
       const res = await fetch(URL);
       const data = await res.json();
-      data.results.forEach((element) => {
+      data.results?.forEach((element : DataTypes) => {
         arr.push({
           question: he.decode(element.question),
           answer: shuffle([
@@ -67,20 +70,19 @@ const Main = () => {
     getAPI();
   }, [count]);
 
-  const handleRadioChange = (event) => {
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target
     userAns[Number((name).slice(-1))] = value
     // console.log(userAns)
     allAns.current = [...userAns]
+    if (!allAns.current?.includes('')) {
+      setcheckDisabled(false)
+    }
     console.log(allAns)
   }
 
-  const checkAnswers = () => {   
-    if (allAns.current.includes(null) || allAns.current.length === 0) {
-      return
-    } else {
-        setToggleRestart(true)
-    }
+  const checkAnswers = () => { 
+    setToggleRestart(true)
     setToggleStyle(true)
   }  
 
@@ -89,9 +91,10 @@ const Main = () => {
     setCount(prev => prev + 1)
     setToggleRestart(false)
     setToggleStyle(false)
+    setcheckDisabled(true)
   }
 
-  const questionAnswerContainer = triviaData?.map((item, index) => {
+  const questionAnswerContainer = triviaData?.map((item : QuestionAnswerArr, index: number) => {
     return (
       <div key={index} className="question-container">
         <h2 className='question'>{item.question}</h2>       
@@ -102,7 +105,7 @@ const Main = () => {
                   type='radio'
                   name={`answerGroup${index}`}
                   id={`${element.ans}${index}`}
-                  value={element.isCorrect}
+                  value={`${element.isCorrect}`}
                   className={`${toggleStyle ? (element.isCorrect ? 'correct' : 'incorrect') : ''}`}
                   onChange={handleRadioChange}
                 />
@@ -125,11 +128,12 @@ const Main = () => {
           {questionAnswerContainer}
           {toggleRestart ? 
           <div className='trivia-results'>
-            <p>You Scored {`${allAns.current.filter(x => x === 'true').length}`}/5 correct answers</p>
+            <p>You scored {`${allAns.current?.filter(x => x === 'true').length}`}/5 correct answers</p>
             <button type='button' onClick={restartGame}>Restart</button>
           </div>
           :
-          <button className='btnCheckAns' type='button' onClick={checkAnswers}>Check Answers</button>}
+          <button className='btnCheckAns' type='button' disabled={checkDisabled} onClick={checkAnswers}>Check Answers</button>
+          }
         </>
       )}
     </main>

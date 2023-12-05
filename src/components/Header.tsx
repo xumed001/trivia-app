@@ -1,4 +1,5 @@
 import themeIcon from '../assets/theme-icon.svg'
+import bookIcon from '../../public/books.svg'
 
 
 const Header = () => {
@@ -6,8 +7,15 @@ const Header = () => {
     <header>
       <div className="header-info">
         <div>
-          <h1>Trivia</h1>
-          <p>Test your general knowledge</p>
+          <div className='header-title'>
+            <img 
+              src={bookIcon} 
+              alt="Stack of books" 
+              className='header-icon'
+              />
+            <h1>Trivia</h1>
+          </div>
+          <p>Test your video game knowledge</p>
         </div>
         <button>
           <img src={themeIcon} alt="theme icon" />
