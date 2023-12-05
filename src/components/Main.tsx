@@ -5,7 +5,7 @@ import { DataTypes, QuestionAnswerArr } from '../types/types';
 
 
 const Main = () => {
-  console.log('component rendered');
+  // console.log('component rendered');
   const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
   const [triviaData, setTriviaData] = useState<QuestionAnswerArr[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);  
@@ -32,7 +32,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    console.log('effect ran');
+    // console.log('effect ran');
     async function getAPI() {
       const arr: any[] = [];
       const res = await fetch(URL);
@@ -78,7 +78,7 @@ const Main = () => {
     if (!allAns.current?.includes('')) {
       setcheckDisabled(false)
     }
-    console.log(allAns)
+    // console.log(allAns)
   }
 
   const checkAnswers = () => { 
@@ -128,7 +128,7 @@ const Main = () => {
           {questionAnswerContainer}
           {toggleRestart ? 
           <div className='trivia-results'>
-            <p>You scored {`${allAns.current?.filter(x => x === 'true').length}`}/5 correct answers</p>
+            <p>You answered {`${allAns.current?.filter(x => x === 'true').length}`}/5 questions correctly!</p>
             <button type='button' onClick={restartGame}>Restart</button>
           </div>
           :
