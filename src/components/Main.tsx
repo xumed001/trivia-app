@@ -12,7 +12,6 @@ const Main = (props: Props) => {
   const [toggleRestart, setToggleRestart] = useState(false);
   const [count, setCount] = useState(0);
   const [toggleStyle, setToggleStyle] = useState(false)
-  const [checkDisabled, setcheckDisabled] = useState(true)
 
   const allAns = useRef<string[]>([]);
   const userAns = new Array(5).fill('');
@@ -73,16 +72,17 @@ const Main = (props: Props) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target
     userAns[Number((name).slice(-1))] = value
-    // console.log(userAns)
+    console.log(userAns)
     allAns.current = [...userAns]
-    if (!allAns.current?.includes('')) {
-      setcheckDisabled(false)
-    }
-    // console.log(allAns)
+    console.log(allAns)
   }
 
   const checkAnswers = () => { 
-    setToggleRestart(true)
+    if (allAns.current?.includes('')) {
+      return
+    } else {
+      setToggleRestart(true)
+    }
     setToggleStyle(true)
   }  
 
@@ -91,7 +91,6 @@ const Main = (props: Props) => {
     setCount(prev => prev + 1)
     setToggleRestart(false)
     setToggleStyle(false)
-    setcheckDisabled(true)
   }
 
   const questionAnswerContainer = triviaData?.map((item : QuestionAnswerArr, index: number) => {
@@ -132,7 +131,7 @@ const Main = (props: Props) => {
             <button type='button' onClick={restartGame}>Restart</button>
           </div>
           :
-          <button className='btnCheckAns' type='button' disabled={checkDisabled} onClick={checkAnswers}>Check Answers</button>
+          <button className='btnCheckAns' type='button' onClick={checkAnswers}>Check Answers</button>
           }
         </>
       )}
