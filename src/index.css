@@ -223,7 +223,7 @@ footer {
   }
 
   main {
-    width: 60%;
+    width: 40%;
     margin-top: 4rem;
   }
 
@@ -233,10 +233,12 @@ footer {
     font-style: normal;
     font-weight: 500;
     text-align: left;
+    /* text-align: center; */
   }
 
   .answers-container {
     display: flex;
+    /* justify-content: center; */
   }
 
   input[type='radio'] {
