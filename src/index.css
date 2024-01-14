@@ -223,22 +223,20 @@ footer {
   }
 
   main {
-    width: 40%;
+    max-width: 700px;
     margin-top: 4rem;
   }
 
   .question-container {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     margin-bottom: 2.2rem;
     font-style: normal;
     font-weight: 500;
     text-align: left;
-    /* text-align: center; */
   }
 
   .answers-container {
     display: flex;
-    /* justify-content: center; */
   }
 
   input[type='radio'] {
@@ -248,7 +246,7 @@ footer {
     margin-top: 0.2rem;
     display: inline-block;
     padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     border-radius: 1rem;
     background-color: var(--neutral-200);
     min-width: 4rem;

@@ -3,9 +3,8 @@ import { nanoid } from 'nanoid';
 import he from 'he';
 import { DataTypes, Props, QuestionAnswerArr } from '../types/types';
 
-
 const Main = (props: Props) => {
-  // console.log('component rendered');
+  //console.log('component rendered');
   const URL = 'https://opentdb.com/api.php?amount=5&category=15&type=multiple';
   const [triviaData, setTriviaData] = useState<QuestionAnswerArr[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);  
@@ -31,7 +30,7 @@ const Main = (props: Props) => {
   };
 
   useEffect(() => {
-    // console.log('effect ran');
+    //console.log('effect ran');
     async function getAPI() {
       const arr: any[] = [];
       const res = await fetch(URL);
@@ -72,9 +71,9 @@ const Main = (props: Props) => {
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target
     userAns[Number((name).slice(-1))] = value
-    console.log(userAns)
+    //console.log(userAns)
     allAns.current = [...userAns]
-    console.log(allAns)
+    //console.log(allAns)
   }
 
   const checkAnswers = () => { 
