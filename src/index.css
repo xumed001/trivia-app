@@ -74,7 +74,7 @@ header {
 
 .header-info p {
   padding: 4px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: bold;
 }
 
@@ -100,11 +100,11 @@ main.dark {
 }
 
 .question-container {
-  font-size: 0.5rem;
-  margin-bottom: 1.1rem;
+  font-size: 0.75rem;
+  margin-bottom: 1.4rem;
 }
 .question-container .question {
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.8rem;
 }
 
 .answers-container {
@@ -121,7 +121,7 @@ input[type='radio'] {
   display: none;
 }
 label {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   margin-top: 0.1rem;
   display: block;
   padding: 0.22rem 0;
@@ -173,7 +173,7 @@ input[type='radio']:checked + label {
   border: none;
   background-color: var(--neutral-200);
   color: var(--color-800);
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 
 footer {

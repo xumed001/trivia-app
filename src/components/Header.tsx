@@ -15,7 +15,7 @@ const Header = (props: Props) => {
               />
             <h1>Trivia</h1>
           </div>
-          <p>Test your video game knowledge</p>
+          <p>✨ Test your video game knowledge</p>
         </div>
 
         <button 
