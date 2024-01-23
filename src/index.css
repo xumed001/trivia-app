@@ -25,8 +25,8 @@
 
 body {
   line-height: normal;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--neutral-100);
@@ -92,7 +92,6 @@ main {
   color: var(--color-950);
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 main.dark {
@@ -100,11 +99,12 @@ main.dark {
 }
 
 .question-container {
-  font-size: 0.75rem;
   margin-bottom: 1.4rem;
 }
 .question-container .question {
   margin-bottom: 0.8rem;
+  font-weight: 400;
+  font-size: 1.25rem;
 }
 
 .answers-container {
@@ -121,8 +121,9 @@ input[type='radio'] {
   display: none;
 }
 label {
-  font-size: 0.7rem;
   margin-top: 0.1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   display: block;
   padding: 0.22rem 0;
   border-radius: 1rem;
@@ -130,7 +131,6 @@ label {
   text-align: center;
   transition: all 0.3s;
   background-color: var(--neutral-200);
-  font-weight: bold;
 }
 
 input[type='radio']:checked + label {
@@ -173,7 +173,8 @@ input[type='radio']:checked + label {
   border: none;
   background-color: var(--neutral-200);
   color: var(--color-800);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 footer {
